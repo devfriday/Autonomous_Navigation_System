@@ -1,0 +1,13 @@
+function [] = find_junction(new_img)
+s=size(new_img);
+bw=bwconncomp(new_img,8)
+numPixels = cellfun(@numel,bw.PixelIdxList)
+for i=1:bw.NumObjects
+    if numPixels(i)<2000
+        new_img(bw.PixelIdxList{i})=0;
+    end
+end
+[x no_char]=bwlabel(new_img,8);
+
+end
+
